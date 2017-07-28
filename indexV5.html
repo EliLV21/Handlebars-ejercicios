@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Handlebars</title>
+</head>
+<body>
+	<div id="action"></div>
+	<script type="text/x-handlebars-template" id="index">
+		{{#each registros}}
+			<h2 style="color: blue; font-family: helvetica" >{{{ nombre}}} {{{ apellidos}}}, {{{ edad}}}</h2>
+		{{/each}}
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+	<script type="text/javascript">
+	var template = document.getElementById("index").innerHTML;
+		var compilar = Handlebars.compile(template);
+		var persona = {
+			registros: [
+			{
+				nombre:"Mariana",
+				apellidos: "Jane Jones",
+				edad: 29,
+				mayor_edad: false
+			},
+			{
+				nombre:"Josh",
+				apellidos: "Séptimo",
+				edad: 31,
+				mayor_edad: false
+			},
+			{
+				nombre:"Claus",
+				apellidos: "<em style='color: red'>Frank</em>",
+				edad: 30,
+				mayor_edad: false
+			}
+		]
+	}
+
+		var compiladoHTML= compilar(persona)
+		document.getElementById("action").innerHTML += compiladoHTML;
+	</script>
+</body>
+</html>

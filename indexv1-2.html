@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Handlebars</title>
+</head>
+<body>
+	<div id="action"></div>
+	<script type="text/x-handlebars-template" id="index">
+		{{#with persona}}
+			<h2 style="color: green" >{{{ nombre}}} {{{ apellidos}}}, {{{ edad}}} años</h2>
+		{{/with}}
+		<!--<h2>Hola mi nombre es: {{{ name }}}</h2> primer ejemplo-->
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+	<script type="text/javascript">
+	var template = document.getElementById("index").innerHTML;
+		var compilar = Handlebars.compile(template);
+		/*var compiladoHTML = compilar({name:"<em>Mariana</em>"});*/ //primer ejemplo, descomentar para usarlo y comentar posterior
+		var data = {
+			persona:{
+				nombre:"Mariana",
+				apellidos: "Jane Jones",
+				edad: 29
+			}
+		}
+		var compiladoHTML= compilar(data)
+		document.getElementById("action").innerHTML += compiladoHTML;
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Handlebars</title>
+</head>
+<body>
+	<div id="action"></div>
+	<script type="text/x-handlebars-template" id="index">
+		{{#if mayor_edad}}
+			<h2 style="font-family: helvetica; color: purple">{{{ nombre }}} {{{ apellidos }}}, {{{ edad }}}</h2>
+		{{else}}
+			<h1>No eres mayor de edad</h1>
+		{{/if}}
+
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+	<script type="text/javascript">
+	var template = document.getElementById("index").innerHTML;
+		var compilar = Handlebars.compile(template);
+		var persona = {
+				nombre:"Mariana",
+				apellidos: "<em>Jane Jones</em>",
+				edad: 29,
+				mayor_edad: true
+		}
+		var compiladoHTML= compilar(persona)
+		document.getElementById("action").innerHTML += compiladoHTML;
+	</script>
+</body>
+</html>
