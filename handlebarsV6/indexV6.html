@@ -5,21 +5,11 @@
     <title>Haciendo Helpers</title>
 </head>
 <body>
-    <script type="text/x-handlebars-template" id="index">
-        <h2> {{{linkto "ruta" "Nombre"}}}</h2>
-        <h2> {{{linkto "home" "Home"}}}</h2>
-        <h2> {{{linkto "servicios" "Servicios"}}}</h2>
-        <h2> {{{linkto "producto" "Product"}}}</h2>
-    </script>
-
     <p id="action"></p>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
-
+    <script type="text/javascript" src="template.js"></script>
     <script type="text/javascript">
-        var template = document.getElementById("index").innerHTML;
-        var compilar = Handlebars.compile(template);
-
+        var template = Handlebars.templates["index"];
         var data = {};
 
         Handlebars.registerHelper("linkto", function(url,name){
@@ -28,8 +18,7 @@
                 link = "<a href=\'" + location.protocol + "//" + location.host + "/" + url + ".html\'>" + name + "</a>"
                 return new Handlebars.SafeString(link);
             });
-        var compiladorHTML = compilar(data);
-        document.getElementById('action').innerHTML += compiladorHTML;
+        document.getElementById('action').innerHTML += template(data);
     </script>
 </body>
 </html>
